@@ -11,7 +11,7 @@ import { StackNavigationProp } from '@react-navigation/stack'
 import { HomeStackParamList } from '../../navigation/HomeScreenNavigation'
 
 
-type homeScreenProp = StackNavigationProp<HomeStackParamList, 'Home'>
+type homeScreenProp = StackNavigationProp<HomeStackParamList, 'CourseDetail'>
 
 const CourseList = ({ level }: any) => {
 

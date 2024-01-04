@@ -1,21 +1,24 @@
-import { View, Text, Button } from 'react-native'
+import { View, ScrollView } from 'react-native'
 import React from 'react'
-import { useNavigation } from '@react-navigation/native'
 import { Ionicons } from '@expo/vector-icons';
 import Colors from '../utils/Colors';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import CourseDetail from '../components/HomeScreen/Course/CourseDetail';
+import ChapterList from '../components/HomeScreen/Course/ChapterList';
 
 
 const CourseDetailScreen = ({ navigation, route }: any) => {
 
   return route.params.course && (
-    <View style={{ padding: 10 }}>
-      <TouchableOpacity  onPress={() => navigation.goBack()} >
-        <Ionicons name="arrow-back-circle" size={40} color={Colors.WHITE}/>
-      </TouchableOpacity>
+    <ScrollView style={{ padding: 10 }}>
+      <View style={{ zIndex: 10}}>
+        <TouchableOpacity onPress={() => navigation.goBack()}>
+          <Ionicons name="arrow-back-circle" size={40} color={Colors.WHITE}/>
+        </TouchableOpacity>
+      </View>
       <CourseDetail course={route.params.course} />
-    </View>
+      <ChapterList chapterList={route.params.course.chapters}/>
+    </ScrollView>
   )
 }
 

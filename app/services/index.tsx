@@ -20,7 +20,17 @@ export const getCourseList = async (level:any) => {
         url
       }
       chapters {
+        title
         id
+        chapters {
+          heading
+          content {
+            markdown
+          }
+          output {
+            markdown
+          }
+        }
       }
     }
   }

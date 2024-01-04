@@ -3,5 +3,6 @@ export default {
   LIGHT_PRIMARY: '#C2BAFF',
   WHITE:'#fff',
   BLACK:'#000',
-  GRAY: '#6C6C6C',
+  GRAY: '#BEBEBE',
+  SECONDERY: '#4EF4EF'
 }
