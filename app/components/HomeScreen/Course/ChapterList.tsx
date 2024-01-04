@@ -10,10 +10,10 @@ const ChapterList = ({ chapterList }: any) => {
     borderRadius: 15, marginTop: 15 }}>
       <Text style={{ fontFamily: 'Outfit_500Medium', fontSize: 21 }}>Chapters</Text>
       {chapterList.map((chapter: any, index: number) => (
-        <View style={{display:'flex', flexDirection:'row', alignItems:'center',
+        <View key={index}  style={{display:'flex', flexDirection:'row', alignItems:'center',
         justifyContent:'space-between', padding: 10, borderWidth:1, borderRadius:10, 
         marginTop: 10, borderColor: Colors.GRAY}}>
-          <View key={index} style={{
+          <View style={{
             display: 'flex', flexDirection: 'row', alignItems: 'center', gap: 8,
           }}>
             <Text style={{ fontFamily: 'Outfit_500Medium', fontSize: 25, color:Colors.GRAY }}>{index + 1}</Text>

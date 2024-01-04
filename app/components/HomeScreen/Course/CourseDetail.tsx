@@ -4,7 +4,7 @@ import Colors from '../../../utils/Colors'
 import OptionItem from './OptionItem'
 import { TouchableOpacity } from 'react-native-gesture-handler'
 
-const CourseDetail = ({ course }: any) => {
+const CourseDetail = ({ course, enrollCourse }: any) => {
   return (
     <View>
       <View style={{
@@ -45,9 +45,12 @@ const CourseDetail = ({ course }: any) => {
           </View>
           <View style={{display:'flex',flexDirection:'row',gap:10,justifyContent:'space-evenly'}}>
             <TouchableOpacity style={{padding: 15, backgroundColor: Colors.PRIMARY,
-            borderRadius: 15, marginBottom: 15}}>
+            borderRadius: 15, marginBottom: 15}} 
+            onPress={() => enrollCourse()}
+            >
               <Text style={{fontFamily: 'Outfit_600SemiBold', color:Colors.WHITE,
-              fontWeight:'bold', textAlign:'center', fontSize: 17}}>Enroll for Free</Text>
+              fontWeight:'bold', textAlign:'center', fontSize: 17}} 
+              >Enroll for Free</Text>
             </TouchableOpacity>
             <TouchableOpacity style={{padding: 15, backgroundColor: Colors.SECONDERY,
             borderRadius: 15, marginBottom: 15}}>
