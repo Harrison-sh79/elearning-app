@@ -4,11 +4,11 @@ import Colors from '../../../utils/Colors'
 import OptionItem from './OptionItem'
 import { TouchableOpacity } from 'react-native-gesture-handler'
 
-const CourseDetail = ({ course, enrollCourse }: any) => {
+const CourseDetail = ({ course, enrollCourse, userEnrolledCourse }: any) => {
   return (
     <View>
       <View style={{
-        marginLeft: -10, marginTop: -50, zIndex:-1,
+        marginLeft: -10, marginTop: -50, zIndex: -1,
         height: 200, width: Dimensions.get('screen').width, backgroundColor: Colors.PRIMARY
       }}></View>
       <View style={{ marginTop: -120, backgroundColor: Colors.WHITE, borderRadius: 15, padding: 5 }}>
@@ -40,22 +40,30 @@ const CourseDetail = ({ course, enrollCourse }: any) => {
             <Text style={{
               fontFamily: 'Outfit_300Light', fontSize: 15,
               color: Colors.GRAY, lineHeight: 23, letterSpacing: 1, padding: 5,
-              
+
             }}>{course.discription.markdown}</Text>
           </View>
-          <View style={{display:'flex',flexDirection:'row',gap:10,justifyContent:'space-evenly'}}>
-            <TouchableOpacity style={{padding: 15, backgroundColor: Colors.PRIMARY,
-            borderRadius: 15, marginBottom: 15}} 
-            onPress={() => enrollCourse()}
+          <View style={{ display: 'flex', flexDirection: 'row', gap: 10, justifyContent: 'space-evenly' }}>
+            {userEnrolledCourse?.length <= 0 ? (<TouchableOpacity style={{
+              padding: 15, backgroundColor: Colors.PRIMARY,
+              borderRadius: 15, marginBottom: 15
+            }}
+              onPress={() => enrollCourse()}
             >
-              <Text style={{fontFamily: 'Outfit_600SemiBold', color:Colors.WHITE,
-              fontWeight:'bold', textAlign:'center', fontSize: 17}} 
+              <Text style={{
+                fontFamily: 'Outfit_600SemiBold', color: Colors.WHITE,
+                fontWeight: 'bold', textAlign: 'center', fontSize: 17
+              }}
               >Enroll for Free</Text>
-            </TouchableOpacity>
-            <TouchableOpacity style={{padding: 15, backgroundColor: Colors.SECONDERY,
-            borderRadius: 15, marginBottom: 15}}>
-              <Text style={{fontFamily: 'Outfit_600SemiBold', color:Colors.WHITE,
-              fontWeight:'bold', textAlign:'center', fontSize: 17}}>Membership $2.99/Mon</Text>
+            </TouchableOpacity>) : null}
+            <TouchableOpacity style={{
+              padding: 15, backgroundColor: Colors.SECONDERY,
+              borderRadius: 15, marginBottom: 15
+            }}>
+              <Text style={{
+                fontFamily: 'Outfit_600SemiBold', color: Colors.WHITE,
+                fontWeight: 'bold', textAlign: 'center', fontSize: 17
+              }}>Membership $2.99/Mon</Text>
             </TouchableOpacity>
           </View>
         </View>

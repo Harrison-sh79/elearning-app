@@ -1,4 +1,4 @@
-import { StyleSheet, View, Text } from 'react-native';
+import { StyleSheet, View, Text, SafeAreaView } from 'react-native';
 import {
   useFonts, Outfit_400Regular, Outfit_100Thin, Outfit_200ExtraLight,
   Outfit_300Light, Outfit_500Medium, Outfit_600SemiBold, Outfit_700Bold,
@@ -9,8 +9,14 @@ import { ClerkProvider, SignedIn, SignedOut } from "@clerk/clerk-expo";
 import Constants from "expo-constants"
 import { NavigationContainer } from '@react-navigation/native';
 import TabNavigation from './app/navigation/TabNavigation';
+import { RootSiblingParent } from 'react-native-root-siblings'
+import { CompleteChapterContext } from './app/context/CompleteChapterContext';
+import { useState } from 'react';
 
 export default function App() {
+
+  const [isChapterCompleted, setIsChapterCompleted] = useState(false)
+
   let [fontsLoaded, fontError] = useFonts({
     Outfit_400Regular, Outfit_100Thin, Outfit_200ExtraLight,
     Outfit_300Light, Outfit_500Medium, Outfit_600SemiBold, Outfit_700Bold,
@@ -21,18 +27,24 @@ export default function App() {
     return null;
   }
 
+  
+
   return (
     <ClerkProvider publishableKey={Constants.expoConfig?.extra?.clerkPublishableKey}>
-      <View style={styles.container}>
-        <SignedIn>
-          <NavigationContainer>
-            <TabNavigation />
-          </NavigationContainer>
-        </SignedIn>
-        <SignedOut>
-          <LoginScreen />
-        </SignedOut>
-      </View>
+      <CompleteChapterContext.Provider value={{isChapterCompleted, setIsChapterCompleted}}>
+        <RootSiblingParent>
+          <SafeAreaView style={styles.container}>
+            <SignedIn>
+              <NavigationContainer>
+                <TabNavigation />
+              </NavigationContainer>
+            </SignedIn>
+            <SignedOut>
+              <LoginScreen />
+            </SignedOut>
+          </SafeAreaView>
+        </RootSiblingParent>
+      </CompleteChapterContext.Provider>
     </ClerkProvider>
   );
 }
